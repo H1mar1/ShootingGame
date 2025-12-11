@@ -8,6 +8,9 @@ public class enemyManager : MonoBehaviour
     [SerializeField,Header("ìGÇÃÉXÉ|Å[Éìä‘äu")]
     private float spwenInterval;
 
+    private Vector2 spawnRangeX = new Vector2(-2.48f, 2.48f);
+    private float spawnY = 5.6f;
+
     private void Start()
     {
         enemySpan().Forget();
@@ -24,6 +27,9 @@ public class enemyManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
+        Vector3 spawnPosition = new Vector3(x, spawnY, 0.0f);
+
+        Instantiate(enemyPrefab, spawnPosition , Quaternion.identity);
     }
 }
