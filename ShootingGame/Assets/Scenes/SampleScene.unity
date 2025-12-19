@@ -683,10 +683,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2119976220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e5694d4d0464c408f3fc83e0739dce, type: 3}
+  m_Script: {fileID: 11500000, guid: 315047a7a1d5ce74cb9677bb55f63332, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerBullerMove
-  playerBullerSpead: 1
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
+  playerBuller: {fileID: 6464551040457580480, guid: 77ece1271bbcf684a8eb0a417c8d755b, type: 3}
+  shootInterval: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
