@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,12 +11,16 @@ public class Enemy : MonoBehaviour
     [SerializeField, Header("敵の得点")]
     private float enemyPoint;
 
-    private float point;
+    //Poolの戻るための処理
+    private Action releaseAction;
 
-    private void Start()
+    //Poolから渡される初期値
+    public void Initialize(Action release)
     {
-        point = 0;//最初のポイントは0
+        releaseAction = release;
     }
+
+   
 
     private void Update()
     {
@@ -25,7 +30,7 @@ public class Enemy : MonoBehaviour
         // 画面外に出たら消す
         if (transform.position.y < destroyY)
         {
-            Destroy(gameObject);
+           // Release();
         }
 
     }
