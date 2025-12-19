@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   downSpeed: 3
   destroyY: -6
+  enemyPoint: 1
 --- !u!50 &3600982048655348227
 Rigidbody2D:
   serializedVersion: 5

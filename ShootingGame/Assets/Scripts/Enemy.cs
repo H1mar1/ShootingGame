@@ -7,6 +7,15 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, Header("削除Y座標")]
     private float destroyY = -6f;
+    [SerializeField, Header("敵の得点")]
+    private float enemyPoint;
+
+    private float point;
+
+    private void Start()
+    {
+        point = 0;//最初のポイントは0
+    }
 
     private void Update()
     {
@@ -28,6 +37,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("aaa");
             Destroy(gameObject);
+          
         }
     }
 }
