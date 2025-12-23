@@ -32,7 +32,7 @@ public class PlayerBullerPool : MonoBehaviour
         //    false,
         //    10,
         //    30
-            );
+        //    );
     }
 
     private Enemy CreateEnemy()
