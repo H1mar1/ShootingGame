@@ -5,8 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField, Header("プレイヤーの設定")]
     private GameObject playerObj;
-    [SerializeField, Header("敵のプレハブの設定")]
-    private GameObject enemyPrefab;
+ 
 
     public async UniTask OnPlayerHitEnemy()
     {

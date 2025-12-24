@@ -12,12 +12,12 @@ public class Enemy : MonoBehaviour
     private float enemyPoint;
 
     //Pool‚Ì–ß‚é‚½‚ß‚Ìˆ—
-    private Action releaseAction;
+    private Action _releaseAction;
 
     //Pool‚©‚ç“n‚³‚ê‚é‰Šú’l
-    public void Initialize(Action release)
+    public void Initialize(Action releaseAction)
     {
-        releaseAction = release;
+        _releaseAction = releaseAction;
     }
 
    
@@ -30,9 +30,15 @@ public class Enemy : MonoBehaviour
         // ‰æ–ÊŠO‚Éo‚½‚çÁ‚·
         if (transform.position.y < destroyY)
         {
-           // Release();
+            Release();
         }
 
+    }
+
+    private void Release()
+    {
+        gameObject.SetActive(false);
+        _releaseAction?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
