@@ -43,8 +43,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //ƒvƒŒƒCƒ„[‚É“–‚½‚Á‚½‚çÁ‚¦‚é
-        if (other.CompareTag("Player"))
+        //’e‚É“–‚½‚Á‚½‚çÁ‚¦‚é
+        if (other.CompareTag("PlayerBullet"))
         {
             Release();
         }
