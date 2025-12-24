@@ -46,9 +46,7 @@ public class Enemy : MonoBehaviour
         //ƒvƒŒƒCƒ„[‚É“–‚½‚Á‚½‚çÁ‚¦‚é
         if (other.CompareTag("Player"))
         {
-            Debug.Log("aaa");
-            Destroy(gameObject);
-          
+            Release();
         }
     }
 }
