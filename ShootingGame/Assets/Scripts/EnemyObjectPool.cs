@@ -26,7 +26,7 @@ public class EnemyObjectPool : MonoBehaviour
             OnDestroyEnemy,  // プールから完全に削除するときの処理
             false,           // collectionCheck（通常は false でOK）
             10,              // defaultCapacity：最初に作っておく Enemy の数
-            30               // maxSize：プールで管理できる最大数
+            10               // maxSize：プールで管理できる最大数
         );
     }
 

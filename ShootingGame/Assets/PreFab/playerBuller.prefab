@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e5694d4d0464c408f3fc83e0739dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerBullerMove
-  playerBullerSpead: 5
+  playerBullerSpead: 7
   destroyY: 5.6
 --- !u!50 &-8194405017975842950
 Rigidbody2D:

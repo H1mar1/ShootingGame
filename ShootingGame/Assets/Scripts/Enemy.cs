@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     private void Release()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         _releaseAction?.Invoke();
     }
 
