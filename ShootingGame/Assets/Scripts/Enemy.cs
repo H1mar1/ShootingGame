@@ -40,7 +40,6 @@ public class Enemy : MonoBehaviour
 
     private void Release()
     {
-
         if (isReleased) return;
         isReleased = true;
         gameObject.SetActive(false);
@@ -53,7 +52,7 @@ public class Enemy : MonoBehaviour
         //’e‚É“–‚½‚Á‚½‚çÁ‚¦‚é
         if (other.CompareTag("PlayerBullet"))
         {
-          isReleased = true;
+          isReleased = false;
 
             Debug.Log("’e‚ª“–‚½‚è‚Ü‚µ‚½I");
             GameManager.Instance.AddScore(enemyPoint);

@@ -60,6 +60,7 @@ public class EnemyObjectPool : MonoBehaviour
     {
         // Enemy を非表示にして再利用可能な状態にする
         enemy.gameObject.SetActive(false);
+        
     }
 
     // Destroy（完全に消す時）
