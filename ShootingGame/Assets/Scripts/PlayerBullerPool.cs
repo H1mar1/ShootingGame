@@ -42,6 +42,7 @@ public class PlayerBullerPool : MonoBehaviour
     {
         //プレイヤーの位置を参照
         Vector3 spawnPosition = playerObj.transform.position + Vector3.up * 0.5f;
+        spawnPosition.z = 0f;
         playerBullet.transform.position = spawnPosition;
         playerBullet.transform.rotation = Quaternion.identity;
 

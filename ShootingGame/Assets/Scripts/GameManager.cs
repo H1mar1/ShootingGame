@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     
     public static GameManager Instance;
 
-    private int score = 0;//最初のスコア設定
+    private float score = 0;//最初のスコア設定
 
     private void Awake()
     {
@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
     }
 
     //敵を倒したとき
-    public void AddScore(int value)
+    public void AddScore(float point)
     {
-        score += value;
+        score += point;
         Debug.Log("スコア:" + score);
     }
 

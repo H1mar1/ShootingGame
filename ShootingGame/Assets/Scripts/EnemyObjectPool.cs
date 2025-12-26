@@ -44,7 +44,7 @@ public class EnemyObjectPool : MonoBehaviour
         enemy.transform.position = new Vector3(
             Random.Range(-2.5f, 2.5f),
             6f,
-            0
+            0f
         );
 
         // Enemy に「プールへ戻る方法」を教える

@@ -14,10 +14,13 @@ public class Enemy : MonoBehaviour
     //Pool‚Ì–ß‚é‚½‚ß‚Ìˆ—
     private Action _releaseAction;
 
+    private bool isReleased;
+
     //Pool‚©‚ç“n‚³‚ê‚é‰Šú’l
     public void Initialize(Action releaseAction)
     {
         _releaseAction = releaseAction;
+        isReleased = false;
     }
 
    
@@ -37,17 +40,24 @@ public class Enemy : MonoBehaviour
 
     private void Release()
     {
-        //gameObject.SetActive(false);
+
+        if (isReleased) return;
+        isReleased = true;
+        gameObject.SetActive(false);
         _releaseAction?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isReleased) return;
         //’e‚É“–‚½‚Á‚½‚çÁ‚¦‚é
         if (other.CompareTag("PlayerBullet"))
         {
+          isReleased = true;
+
             Debug.Log("’e‚ª“–‚½‚è‚Ü‚µ‚½I");
-            GameManager.Instance.AddScore((int)enemyPoint);
+            GameManager.Instance.AddScore(enemyPoint);
+
             Release();
         }
     }

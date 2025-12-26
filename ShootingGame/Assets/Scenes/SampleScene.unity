@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38038b6325af93d4a86b27634b42e36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
-  spawnInterval: 1.5
+  spawnInterval: 100
 --- !u!4 &656888926
 Transform:
   m_ObjectHideFlags: 0
