@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         //’e‚É“–‚½‚Á‚½‚çÁ‚¦‚é
         if (other.CompareTag("PlayerBullet"))
         {
-          isReleased = false;
+          //isReleased = false;
 
             Debug.Log("’e‚ª“–‚½‚è‚Ü‚µ‚½I");
             GameManager.Instance.AddScore(enemyPoint);
