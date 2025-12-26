@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, Header("íœYÀ•W")]
     private float destroyY = -6f;
-    [SerializeField, Header("“G‚Ì“¾“_")]
+    [SerializeField, Header("“G‚Ìƒ|ƒCƒ“ƒg")]
     private float enemyPoint;
 
     //Pool‚Ì–ß‚é‚½‚ß‚Ìˆ—
@@ -46,6 +46,8 @@ public class Enemy : MonoBehaviour
         //’e‚É“–‚½‚Á‚½‚çÁ‚¦‚é
         if (other.CompareTag("PlayerBullet"))
         {
+            Debug.Log("’e‚ª“–‚½‚è‚Ü‚µ‚½I");
+            GameManager.Instance.AddScore((int)enemyPoint);
             Release();
         }
     }
