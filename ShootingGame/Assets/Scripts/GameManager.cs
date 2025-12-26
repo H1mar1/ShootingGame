@@ -1,12 +1,17 @@
 using Cysharp.Threading.Tasks;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.LookDev;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField, Header("プレイヤーの設定")]
     private GameObject playerObj;
+    [SerializeField, Header("得点を表示するテキストの設定")]
+    private TextMeshProUGUI scoreText;
     
     public static GameManager Instance;
 
@@ -22,6 +27,10 @@ public class GameManager : MonoBehaviour
     {
         score += point;
         Debug.Log("スコア:" + score);
+       if(score != null)
+        {
+            scoreText.text = "Score:" + score.ToString();
+        }
     }
 
 
