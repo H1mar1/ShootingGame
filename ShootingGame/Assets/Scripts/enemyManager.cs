@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class enemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour
 {
     [SerializeField,Header("“G‚ÌƒvƒŒƒnƒu‚Ìİ’è")]
     private GameObject enemyPrefab;
