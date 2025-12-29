@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 public class PlayerBullerPool : MonoBehaviour
 {
     //シングルトン
-    public static PlayerBullerPool instance;
+    public static PlayerBullerPool Instance;
 
     [SerializeField, Header("プレイヤーの出す弾の設定")]
     private PlayerBullet playerBulletPrefab;
@@ -17,7 +17,7 @@ public class PlayerBullerPool : MonoBehaviour
     private void Awake()
     {
         //シングルトンの設定
-        instance = this;
+        Instance = this;
 
         //ObjectPoolの設定
         playerBulletPool = new ObjectPool<PlayerBullet>(
@@ -26,7 +26,7 @@ public class PlayerBullerPool : MonoBehaviour
             OnReleasePlayerBullet,
             OnDestroyPlayerBullet,
             false,
-            20,
+            50,
             100
         );
     }
@@ -38,7 +38,7 @@ public class PlayerBullerPool : MonoBehaviour
     }
 
     //Get(使う時・出現時）
-    private void OnGetPlayerBullet(PlayerBullet playerBullet)
+    public void OnGetPlayerBullet(PlayerBullet playerBullet)
     {
         //プレイヤーの位置を参照
         Vector3 spawnPosition = playerObj.transform.position + Vector3.up * 0.5f;

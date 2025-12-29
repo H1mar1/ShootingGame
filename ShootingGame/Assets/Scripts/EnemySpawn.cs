@@ -5,22 +5,29 @@ public class EnemySpawn : MonoBehaviour
 {
     [SerializeField, Header("“G‚Ì¶¬‚³‚ê‚éŠÔŠu")]
     private float spawnInterval = 1.5f;
+    [SerializeField,Header("¶¬‚³‚ê‚é”")]
+    private int maxEnemyCount = 5;
+
 
 
     private float timer;
 
     private void Update()
     {
-        spawnenemy();
+        SpawnEnemy();
     }
 
-    private void spawnenemy()
+    private void SpawnEnemy()
     {
         timer += Time.deltaTime;
 
-        if(timer>= spawnInterval)
+        if (timer >= spawnInterval)
         {
-            EnemyObjectPool.Instance.GetEnemy();
+            if (EnemyObjectPool.Instance.ActiveEnemyCount < maxEnemyCount)
+            {
+                EnemyObjectPool.Instance.GetPoolEnemy();
+            }
+
             timer = 0f;
         }
     }

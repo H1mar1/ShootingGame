@@ -586,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
   spawnInterval: 100
+  maxEnemyCount: 5
 --- !u!4 &656888926
 Transform:
   m_ObjectHideFlags: 0
@@ -927,7 +928,6 @@ GameObject:
   - component: {fileID: 2038890168}
   - component: {fileID: 2038890169}
   - component: {fileID: 2038890170}
-  - component: {fileID: 2038890171}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1097,20 +1097,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2038890171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2038890165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 315047a7a1d5ce74cb9677bb55f63332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
-  playerBuller: {fileID: 6464551040457580480, guid: 77ece1271bbcf684a8eb0a417c8d755b, type: 3}
-  shootInterval: 1
 --- !u!1 &2119976220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
   playerBuller: {fileID: 6464551040457580480, guid: 77ece1271bbcf684a8eb0a417c8d755b, type: 3}
-  shootInterval: 1
+  shootInterval: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

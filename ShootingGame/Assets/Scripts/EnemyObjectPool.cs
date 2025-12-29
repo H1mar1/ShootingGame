@@ -7,6 +7,9 @@ public class EnemyObjectPool : MonoBehaviour
     // どこからでも EnemyObjectPool.Instance でアクセスできるようにする
     public static EnemyObjectPool Instance;
 
+    public int ActiveEnemyCount => enemyPool.CountActive;
+
+
     [SerializeField,Header("敵のプレハブを設定")]
     private Enemy enemyPrefab;
 
@@ -24,9 +27,9 @@ public class EnemyObjectPool : MonoBehaviour
             OnGetEnemy,      // プールから Enemy を取り出したときの処理（出現時）
             OnReleaseEnemy,  // Enemy をプールに返したときの処理（退場時）
             OnDestroyEnemy,  // プールから完全に削除するときの処理
-            false,           // collectionCheck（通常は false でOK）
-            10,              // defaultCapacity：最初に作っておく Enemy の数
-            10               // maxSize：プールで管理できる最大数
+            collectionCheck: false,           // collectionCheck（通常は false でOK）
+            defaultCapacity: 10,              // defaultCapacity：最初に作っておく Enemy の数
+           maxSize: 10               // maxSize：プールで管理できる最大数
         );
     }
 
@@ -40,6 +43,7 @@ public class EnemyObjectPool : MonoBehaviour
     // Get（使う時・出現時）
     private void OnGetEnemy(Enemy enemy)
     {
+        Debug.Log("Enemy OnGetEnemy called");
         // 出現位置をランダムに設定（画面上部）
         enemy.transform.position = new Vector3(
             Random.Range(-2.5f, 2.5f),
@@ -50,6 +54,7 @@ public class EnemyObjectPool : MonoBehaviour
         // Enemy に「プールへ戻る方法」を教える
         // Enemy 側で Release() が呼ばれると、この処理が実行される
         enemy.Initialize(() => enemyPool.Release(enemy));
+       // enemy.ResetState();
 
         // Enemy を表示（使用開始）
         enemy.gameObject.SetActive(true);
@@ -71,10 +76,17 @@ public class EnemyObjectPool : MonoBehaviour
     }
 
     // 外部から Enemy を取得するための関数
-    public Enemy GetEnemy()
+    public Enemy GetPoolEnemy()
     {
         // プールから Enemy を1体取得する
         // 在庫がなければ CreateEnemy が呼ばれる
-        return enemyPool.Get();
+        Enemy enemyPrefab=enemyPool.Get();
+        return enemyPrefab;
     }
+
+    //public void ReleaseEnemy()
+    //{
+    //    //敵をプールに戻す
+    //     enemyPool.Release(enemyPrefab);
+    //}
 }

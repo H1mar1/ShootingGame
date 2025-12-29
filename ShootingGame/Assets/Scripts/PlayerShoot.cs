@@ -24,7 +24,7 @@ public class PlayerShoot : MonoBehaviour
     private void bullerGeneration()
     {
         // Instantiate を使わず ObjectPool から取得
-        PlayerBullerPool.instance.ShootBullet();
+        PlayerBullerPool.Instance.ShootBullet();
         shootTimer = 0f;//タイマーリセット
     }
 }
