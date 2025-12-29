@@ -25,9 +25,9 @@ public class PlayerBullerPool : MonoBehaviour
             OnGetPlayerBullet,
             OnReleasePlayerBullet,
             OnDestroyPlayerBullet,
-            false,
-            50,
-            100
+            collectionCheck: false,
+            defaultCapacity: 50,
+            maxSize: 100
         );
     }
 

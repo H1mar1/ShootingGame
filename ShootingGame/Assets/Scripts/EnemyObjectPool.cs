@@ -43,7 +43,8 @@ public class EnemyObjectPool : MonoBehaviour
     // Get（使う時・出現時）
     private void OnGetEnemy(Enemy enemy)
     {
-        Debug.Log("Enemy OnGetEnemy called");
+
+        enemy.Initialize(() => enemyPool.Release(enemy));
         // 出現位置をランダムに設定（画面上部）
         enemy.transform.position = new Vector3(
             Random.Range(-2.5f, 2.5f),
@@ -53,8 +54,10 @@ public class EnemyObjectPool : MonoBehaviour
 
         // Enemy に「プールへ戻る方法」を教える
         // Enemy 側で Release() が呼ばれると、この処理が実行される
-        enemy.Initialize(() => enemyPool.Release(enemy));
-       // enemy.ResetState();
+        enemy.gameObject.SetActive(true);
+        Debug.Log("OnGetEnemy called");
+        //enemy.Initialize(() => enemyPool.Release(enemy));
+        //enemy.ResetState();
 
         // Enemy を表示（使用開始）
         enemy.gameObject.SetActive(true);
@@ -80,8 +83,9 @@ public class EnemyObjectPool : MonoBehaviour
     {
         // プールから Enemy を1体取得する
         // 在庫がなければ CreateEnemy が呼ばれる
-        Enemy enemyPrefab=enemyPool.Get();
-        return enemyPrefab;
+        Enemy enemy=enemyPool.Get();
+ 
+        return enemy;
     }
 
     //public void ReleaseEnemy()

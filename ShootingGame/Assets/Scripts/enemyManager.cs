@@ -34,7 +34,10 @@ public class enemyManager : MonoBehaviour
         Vector3 spawnPosition = new Vector3(x, spawnY, 0.0f);
 
 
-        Instantiate(enemyPrefab, spawnPosition , Quaternion.identity);
+        /// ObjectPool ‚©‚ç Enemy ‚ðŽæ“¾
+    Enemy enemy = EnemyObjectPool.Instance.GetPoolEnemy();
+        enemy.transform.position = spawnPosition;
+        enemy.transform.rotation = Quaternion.identity;
     }
 
 }

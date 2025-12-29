@@ -15,19 +15,25 @@ public class Enemy : MonoBehaviour
     // Poolに戻す処理
     private Action _releaseAction;
 
+    private bool isReleased = false;
+
     // Poolから初期化される
     public void Initialize(Action releaseAction)
     {
+        isReleased = false;
         _releaseAction = releaseAction;
     }
 
     private void Update()
     {
+        if (isReleased) return;
+
         transform.position += Vector3.down * downSpeed * Time.deltaTime;
 
         if (transform.position.y < destroyY)
         {
-            _releaseAction?.Invoke();
+            // _releaseAction?.Invoke();
+            Release();
         }
     }
 
@@ -36,9 +42,27 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("PlayerBullet"))
         {
             Debug.Log("弾が当たりました！");
+            Release();
             GameManager.Instance.AddScore(enemyPoint);
 
-            _releaseAction?.Invoke();
+            //_releaseAction?.Invoke();
+           
+        }
+    }
+
+    private void Release()
+    {
+        if (isReleased) return;
+        isReleased = true;
+
+        if (_releaseAction != null)
+        {
+            _releaseAction.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning("Release called but _releaseAction is null");
+            gameObject.SetActive(false); // 安全策として非アクティブ化
         }
     }
 }
