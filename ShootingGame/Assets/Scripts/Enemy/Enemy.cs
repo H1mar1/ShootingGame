@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     private bool isReleased = false;
 
+    //HPの変数
     private float currentHP;
 
     // Poolから初期化される
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         isReleased = false;
         _releaseAction = releaseAction;
 
+        //最初のMaxHPの設定
         currentHP = enemyDataBase.maxHP;
     }
 
@@ -46,13 +48,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isReleased) return;
+
         if (other.CompareTag("PlayerBullet"))
         {
-            Debug.Log("弾が当たりました！");
-            Release();
-            GameManager.Instance.AddScore(enemyDataBase.enemyPoint);
 
-            //_releaseAction?.Invoke();
+            TakeDamage(1);//1発分のダメージ
            
         }
     }
@@ -71,5 +72,22 @@ public class Enemy : MonoBehaviour
             Debug.LogWarning("Release called but _releaseAction is null");
             gameObject.SetActive(false); // 安全策として非アクティブ化
         }
+    }
+
+    private void TakeDamage(float damage)
+    {
+        currentHP -= damage;
+
+        if (currentHP <= 0)
+        {
+            Debug.Log("弾が当たりました！");
+            GameManager.Instance.AddScore(enemyDataBase.enemyPoint);
+            Release();
+        }
+        else
+        {
+            Debug.Log("敵はまだ生きています！残りHP：" + currentHP);
+        }
+
     }
 }
