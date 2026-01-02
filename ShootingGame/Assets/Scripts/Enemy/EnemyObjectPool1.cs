@@ -14,7 +14,7 @@ public class EnemyObjectPool1 : MonoBehaviour
     private Enemy enemy1Prefab;
 
     // Enemy を生成・管理・再利用するためのプール
-    private ObjectPool<Enemy> enemy1Pool;
+    private ObjectPool<Enemy> enemyPool1;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class EnemyObjectPool1 : MonoBehaviour
         //Instance = this;
 
         // Enemy 用の ObjectPool を作成
-        enemy1Pool = new ObjectPool<Enemy>(
+        enemyPool1 = new ObjectPool<Enemy>(
             CreateEnemy,     // プールに在庫が無いとき、新しく Enemy を生成する
             OnGetEnemy,      // プールから Enemy を取り出したときの処理（出現時）
             OnReleaseEnemy,  // Enemy をプールに返したときの処理（退場時）
@@ -44,7 +44,7 @@ public class EnemyObjectPool1 : MonoBehaviour
     private void OnGetEnemy(Enemy enemy)
     {
 
-        enemy.Initialize(() => enemy1Pool.Release(enemy));
+        enemy.Initialize(() => enemyPool1.Release(enemy));
         // 出現位置をランダムに設定（画面上部）
         enemy.transform.position = new Vector3(
             Random.Range(-2.5f, 2.5f),
@@ -83,7 +83,7 @@ public class EnemyObjectPool1 : MonoBehaviour
     {
         // プールから Enemy を1体取得する
         // 在庫がなければ CreateEnemy が呼ばれる
-        Enemy enemy=enemy1Pool.Get();
+        Enemy enemy=enemyPool1.Get();
  
         return enemy;
     }
@@ -95,5 +95,5 @@ public class EnemyObjectPool1 : MonoBehaviour
     //}
 
 
-    public int ActionCount => enemy1Pool.CountActive;
+    public int ActionCount => enemyPool1.CountActive;
 }

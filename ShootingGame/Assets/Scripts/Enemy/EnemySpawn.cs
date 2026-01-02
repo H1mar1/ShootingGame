@@ -24,6 +24,12 @@ public class EnemySpawn : MonoBehaviour
     //    SpawnEnemy();
     //}
 
+    private void Start()
+    {
+        SpawnLoop().Forget();
+    }
+
+
     private async UniTask SpawnLoop()
     {
         while (true)
