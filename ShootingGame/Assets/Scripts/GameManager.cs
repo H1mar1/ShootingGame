@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     
     public static GameManager Instance;
 
-    private float score = 0;//最初のスコア設定
+    public float score = 0;//最初のスコア設定
 
     private void Awake()
     {

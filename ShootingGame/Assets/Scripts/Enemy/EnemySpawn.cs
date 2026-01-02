@@ -74,6 +74,9 @@ public class EnemySpawn : MonoBehaviour
 
             currentEnemyCount++;
             enemy.OnReleased += OnEnemyReleased;
+
+            float currentScore = GameManager.Instance.score;
+            Debug.Log("現在のスコア：" + currentScore);
         }
     }
 
