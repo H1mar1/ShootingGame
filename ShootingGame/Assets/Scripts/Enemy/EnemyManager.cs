@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField,Header("EnemyPoolÇÃê›íË")]
+    [SerializeField,Header("EnemyPool1ÇÃê›íË")]
     private EnemyObjectPool1 enemyObjectPool1;
-
+    [SerializeField, Header("EnemyPool2ÇÃê›íË")]
+    private EnemyObjectPool2 enemyObjectPool2;
+    [SerializeField, Header("EnemyPool3ÇÃê›íË")]
+    private EnemyObjectPool3 enemyObjectPool3;
 
     [SerializeField,Header("ìGÇÃÉXÉ|Å[Éìä‘äu")]
     private float spwenInterval;
@@ -41,11 +44,21 @@ public class EnemyManager : MonoBehaviour
         //    enemy.transform.position = spawnPosition;
         //    enemy.transform.rotation = Quaternion.identity;
 
-        Enemy enemy = enemyObjectPool1.GetPoolEnemy();
-
         float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
-        enemy.transform.position = new Vector3(x, spawnY, 0f);
-        enemy.transform.rotation = Quaternion.identity;
+
+        Enemy enemy1 = enemyObjectPool1.GetPoolEnemy();
+        enemy1.transform.position = new Vector3(x, spawnY, 0f);
+        enemy1.transform.rotation = Quaternion.identity;
+
+
+        Enemy enemy2 = enemyObjectPool2.GetPoolEnemy();
+        enemy2.transform.position = new Vector3(x, spawnY, 0f);
+        enemy2.transform.rotation = Quaternion.identity;
+
+        Enemy enemy3 = enemyObjectPool3.GetPoolEnemy();
+        enemy3.transform.position = new Vector3(x, spawnY, 0f);
+        enemy3.transform.rotation = Quaternion.identity;
+
     }
 
 }

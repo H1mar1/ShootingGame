@@ -676,6 +676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
   enemyObjectPool1: {fileID: 1984636868}
+  enemyObjectPool2: {fileID: 207619958}
+  enemyObjectPool3: {fileID: 27661616}
   spawnInterval: 100
   maxEnemyCount: 5
 --- !u!4 &656888926
@@ -724,6 +726,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyManager
   enemyObjectPool1: {fileID: 1984636868}
+  enemyObjectPool2: {fileID: 207619958}
+  enemyObjectPool3: {fileID: 27661616}
   spwenInterval: 1
 --- !u!4 &725966533
 Transform:

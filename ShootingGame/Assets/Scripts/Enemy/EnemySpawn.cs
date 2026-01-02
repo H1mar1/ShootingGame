@@ -6,6 +6,8 @@ public class EnemySpawn : MonoBehaviour
 {
     [SerializeField,Header("PoolÇÃê›íË")]
     public EnemyObjectPool1 enemyObjectPool1;
+    public EnemyObjectPool2 enemyObjectPool2;
+    public EnemyObjectPool3 enemyObjectPool3;
 
     [SerializeField, Header("ìGÇÃê∂ê¨Ç≥ÇÍÇÈä‘äu")]
     private float spawnInterval = 1.5f;
@@ -34,7 +36,7 @@ public class EnemySpawn : MonoBehaviour
     {
         while (true)
         {
-            int totalActive= enemyObjectPool1.ActionCount;
+            int totalActive = enemyObjectPool1.ActionCount + enemyObjectPool2.ActionCount + enemyObjectPool3.ActionCount;
 
             if (totalActive < maxEnemyCount)
             {
@@ -54,6 +56,8 @@ public class EnemySpawn : MonoBehaviour
         switch (rand)
         {
             case 0:enemy=enemyObjectPool1.GetPoolEnemy(); break;
+            case 1:enemy=enemyObjectPool2.GetPoolEnemy();break;
+            case 2:enemy=enemyObjectPool3.GetPoolEnemy();break;
         }
 
         if(enemy != null)
