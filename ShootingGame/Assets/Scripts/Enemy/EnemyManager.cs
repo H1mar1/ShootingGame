@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField,Header("敵のプレハブの設定")]
-    private GameObject enemyPrefab;
+    [SerializeField,Header("EnemyPoolの設定")]
+    private EnemyObjectPool1 enemyObjectPool1;
+
+
     [SerializeField,Header("敵のスポーン間隔")]
     private float spwenInterval;
     
@@ -30,13 +32,19 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        //    float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
+        //    //Vector3 spawnPosition = new Vector3(x, spawnY, 0.0f);
+
+
+        //    /// ObjectPool から Enemy を取得
+        //Enemy enemy = EnemyObjectPool1.Instance.GetPoolEnemy();
+        //    enemy.transform.position = spawnPosition;
+        //    enemy.transform.rotation = Quaternion.identity;
+
+        Enemy enemy = enemyObjectPool1.GetPoolEnemy();
+
         float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
-        Vector3 spawnPosition = new Vector3(x, spawnY, 0.0f);
-
-
-        /// ObjectPool から Enemy を取得
-    Enemy enemy = EnemyObjectPool.Instance.GetPoolEnemy();
-        enemy.transform.position = spawnPosition;
+        enemy.transform.position = new Vector3(x, spawnY, 0f);
         enemy.transform.rotation = Quaternion.identity;
     }
 

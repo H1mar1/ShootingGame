@@ -152,9 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898f64f0c23e11b4aa380051298bb77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  downSpeed: 3
   destroyY: -6
-  enemyPoint: 1
+  enemyDataBase: {fileID: 11400000, guid: 95fea987bdadcd849819cb9739145f24, type: 2}
 --- !u!50 &-5788028437883386218
 Rigidbody2D:
   serializedVersion: 5

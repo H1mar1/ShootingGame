@@ -585,6 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38038b6325af93d4a86b27634b42e36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
+  enemyObjectPool1: {fileID: 1984636868}
   spawnInterval: 100
   maxEnemyCount: 5
 --- !u!4 &656888926
@@ -632,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b951ec416d0f8444e8abb47092e8aeca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyManager
-  enemyPrefab: {fileID: 8119194376194121907, guid: f2e90065639908042be3b09df0460512, type: 3}
+  enemyObjectPool1: {fileID: 1984636868}
   spwenInterval: 1
 --- !u!4 &725966533
 Transform:
@@ -881,7 +882,7 @@ GameObject:
   - component: {fileID: 1984636869}
   - component: {fileID: 1984636868}
   m_Layer: 0
-  m_Name: EnemyObjectPool
+  m_Name: EnemyObjectPool1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799259f2d414a494983e64862e7bd7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyObjectPool
-  enemyPrefab: {fileID: 616560884907014026, guid: f2e90065639908042be3b09df0460512, type: 3}
+  enemy1Prefab: {fileID: 616560884907014026, guid: f2e90065639908042be3b09df0460512, type: 3}
 --- !u!4 &1984636869
 Transform:
   m_ObjectHideFlags: 0

@@ -1,28 +1,28 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemyObjectPool : MonoBehaviour
+public class EnemyObjectPool1 : MonoBehaviour
 {
     //シングルトン
     // どこからでも EnemyObjectPool.Instance でアクセスできるようにする
-    public static EnemyObjectPool Instance;
+    // public static EnemyObjectPool1 Instance;
 
-    public int ActiveEnemyCount => enemyPool.CountActive;
+    // public int ActiveEnemyCount => enemyPool.CountActive;
 
 
-    [SerializeField,Header("敵のプレハブを設定")]
-    private Enemy enemyPrefab;
+    [SerializeField, Header("敵のプレハブを設定")]
+    private Enemy enemy1Prefab;
 
     // Enemy を生成・管理・再利用するためのプール
-    private ObjectPool<Enemy> enemyPool;
+    private ObjectPool<Enemy> enemy1Pool;
 
     private void Awake()
     {
         // シングルトンの設定
-        Instance = this;
+        //Instance = this;
 
         // Enemy 用の ObjectPool を作成
-        enemyPool = new ObjectPool<Enemy>(
+        enemy1Pool = new ObjectPool<Enemy>(
             CreateEnemy,     // プールに在庫が無いとき、新しく Enemy を生成する
             OnGetEnemy,      // プールから Enemy を取り出したときの処理（出現時）
             OnReleaseEnemy,  // Enemy をプールに返したときの処理（退場時）
@@ -37,14 +37,14 @@ public class EnemyObjectPool : MonoBehaviour
     private Enemy CreateEnemy()
     {
         // Enemy プレハブを生成し、Pool の子オブジェクトにする
-        return Instantiate(enemyPrefab, transform);
+        return Instantiate(enemy1Prefab, transform);
     }
 
     // Get（使う時・出現時）
     private void OnGetEnemy(Enemy enemy)
     {
 
-        enemy.Initialize(() => enemyPool.Release(enemy));
+        enemy.Initialize(() => enemy1Pool.Release(enemy));
         // 出現位置をランダムに設定（画面上部）
         enemy.transform.position = new Vector3(
             Random.Range(-2.5f, 2.5f),
@@ -83,7 +83,7 @@ public class EnemyObjectPool : MonoBehaviour
     {
         // プールから Enemy を1体取得する
         // 在庫がなければ CreateEnemy が呼ばれる
-        Enemy enemy=enemyPool.Get();
+        Enemy enemy=enemy1Pool.Get();
  
         return enemy;
     }
@@ -93,4 +93,7 @@ public class EnemyObjectPool : MonoBehaviour
     //    //敵をプールに戻す
     //     enemyPool.Release(enemyPrefab);
     //}
+
+
+    public int ActionCount => enemy1Pool.CountActive;
 }

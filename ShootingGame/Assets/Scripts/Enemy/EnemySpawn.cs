@@ -1,34 +1,72 @@
+using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
+    [SerializeField,Header("Pool‚ÌÝ’è")]
+    public EnemyObjectPool1 enemyObjectPool1;
+
     [SerializeField, Header("“G‚Ì¶¬‚³‚ê‚éŠÔŠu")]
     private float spawnInterval = 1.5f;
     [SerializeField,Header("¶¬‚³‚ê‚é”")]
     private int maxEnemyCount = 5;
 
+    private Vector2 spawnRangeX = new Vector2(-2.5f, 2.5f);
+    private float spawnY = 6f;
 
 
-    private float timer;
 
-    private void Update()
+    //private float timer;
+
+    //private void Update()
+    //{
+    //    SpawnEnemy();
+    //}
+
+    private async UniTask SpawnLoop()
     {
-        SpawnEnemy();
-    }
-
-    private void SpawnEnemy()
-    {
-        timer += Time.deltaTime;
-
-        if (timer >= spawnInterval)
+        while (true)
         {
-            if (EnemyObjectPool.Instance.ActiveEnemyCount < maxEnemyCount)
+            int totalActive= enemyObjectPool1.ActionCount;
+
+            if (totalActive < maxEnemyCount)
             {
-                EnemyObjectPool.Instance.GetPoolEnemy();
+                SpawnRandomEnemy();
             }
 
-            timer = 0f;
+            await UniTask.Delay((int)spawnInterval * 1000);
         }
     }
+
+
+   private void SpawnRandomEnemy()
+    {
+        int rand=Random.Range(0,3);
+        Enemy enemy = null;
+
+        switch (rand)
+        {
+            case 0:enemy=enemyObjectPool1.GetPoolEnemy(); break;
+        }
+
+        if(enemy != null)
+        {
+            float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
+            enemy.transform.position=new Vector3(x, spawnY, 0f);
+        }
+    }
+    //private void SpawnEnemy()
+    //{
+    //    timer += Time.deltaTime;
+
+    //    if (timer >= spawnInterval)
+    //    {
+    //        if (EnemyObjectPool.Instance.ActiveEnemyCount < maxEnemyCount)
+    //        {
+    //            EnemyObjectPool.Instance.GetPoolEnemy();
+    //        }
+
+    //        timer = 0f;
+    //    }
 }
