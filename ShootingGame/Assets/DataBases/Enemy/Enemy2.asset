@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Enemy2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataBase
   maxHP: 2
-  moveSpeed: 2
+  moveSpeed: 4
   enemyPoint: 2

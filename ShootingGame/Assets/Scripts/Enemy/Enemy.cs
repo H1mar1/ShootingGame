@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     //HP‚Ì•Ï”
     private float currentHP;
 
+    public event Action OnReleased;
+
     // Pool‚©‚ç‰Šú‰»‚³‚ê‚é
     public void Initialize(Action releaseAction)
     {
@@ -61,6 +63,9 @@ public class Enemy : MonoBehaviour
     private void Release()
     {
         if (isReleased) return;
+        isReleased = true;
+
+        OnReleased?.Invoke();
         isReleased = true;
 
         if (_releaseAction != null)

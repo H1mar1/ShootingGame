@@ -17,7 +17,7 @@ public class EnemySpawn : MonoBehaviour
     private Vector2 spawnRangeX = new Vector2(-2.5f, 2.5f);
     private float spawnY = 6f;
 
-
+    private int currentEnemyCount = 0;//現在の敵の数
 
     //private float timer;
 
@@ -36,20 +36,27 @@ public class EnemySpawn : MonoBehaviour
     {
         while (true)
         {
-            int totalActive = enemyObjectPool1.ActionCount + enemyObjectPool2.ActionCount + enemyObjectPool3.ActionCount;
+            //現在のアクティブな敵の数の合計
+            //int totalActive = enemyObjectPool1.ActionCount + enemyObjectPool2.ActionCount + enemyObjectPool3.ActionCount;
 
-            if (totalActive < maxEnemyCount)
-            {
-                SpawnRandomEnemy();
-            }
+            //if (totalActive < maxEnemyCount)
+            //{
+            //    SpawnRandomEnemy();
+            //}
 
-            await UniTask.Delay((int)spawnInterval * 1000);
+            //await UniTask.Delay((int)spawnInterval * 1000);
+            SpawnRandomEnemy(); 
+            await UniTask.Delay((int)(spawnInterval * 1000));
         }
     }
 
 
    private void SpawnRandomEnemy()
     {
+        //敵の合計をチェック
+        int totalActive = enemyObjectPool1.ActionCount + enemyObjectPool2.ActionCount + enemyObjectPool3.ActionCount;
+        if (totalActive + 1 > maxEnemyCount) return;
+
         int rand=Random.Range(0,3);
         Enemy enemy = null;
 
@@ -64,19 +71,14 @@ public class EnemySpawn : MonoBehaviour
         {
             float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
             enemy.transform.position=new Vector3(x, spawnY, 0f);
+
+            currentEnemyCount++;
+            enemy.OnReleased += OnEnemyReleased;
         }
     }
-    //private void SpawnEnemy()
-    //{
-    //    timer += Time.deltaTime;
 
-    //    if (timer >= spawnInterval)
-    //    {
-    //        if (EnemyObjectPool.Instance.ActiveEnemyCount < maxEnemyCount)
-    //        {
-    //            EnemyObjectPool.Instance.GetPoolEnemy();
-    //        }
-
-    //        timer = 0f;
-    //    }
+    private void OnEnemyReleased()
+    {
+        currentEnemyCount--;
+    }
 }
