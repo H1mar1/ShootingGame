@@ -1,10 +1,6 @@
 using Cysharp.Threading.Tasks;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.LookDev;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,14 +8,14 @@ public class GameManager : MonoBehaviour
     private GameObject playerObj;
     [SerializeField, Header("得点を表示するテキストの設定")]
     private TextMeshProUGUI scoreText;
-    
+
     public static GameManager Instance;
 
     public float score = 0;//最初のスコア設定
 
     private void Awake()
     {
-        Instance= this;
+        Instance = this;
     }
 
     //敵を倒したとき
@@ -27,12 +23,9 @@ public class GameManager : MonoBehaviour
     {
         score += point;
         Debug.Log("スコア:" + score);
-       if(score != null)
-        {
-            scoreText.text = "Score:" + score.ToString();
-        }
-    }
 
+        scoreText.text = "Score:" + score.ToString();
+    }
 
     public async UniTask OnPlayerHitEnemy()
     {

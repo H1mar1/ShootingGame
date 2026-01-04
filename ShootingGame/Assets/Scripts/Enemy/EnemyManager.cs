@@ -1,19 +1,20 @@
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField,Header("EnemyPool1の設定")]
+    [SerializeField, Header("EnemyPool1の設定")]
     private EnemyObjectPool1 enemyObjectPool1;
     [SerializeField, Header("EnemyPool2の設定")]
     private EnemyObjectPool2 enemyObjectPool2;
     [SerializeField, Header("EnemyPool3の設定")]
     private EnemyObjectPool3 enemyObjectPool3;
 
-    [SerializeField,Header("敵のスポーン間隔")]
+    [SerializeField, Header("敵のスポーン間隔")]
     private float spwenInterval;
-    
+
+    [SerializeField, Header("生成される数")]
+    private int maxEnemyCount = 5;
 
     private Vector2 spawnRangeX = new Vector2(-2.48f, 2.48f);
     private float spawnY = 5.6f;
@@ -21,7 +22,6 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         enemySpanLoop().Forget();
-
     }
 
     async UniTask enemySpanLoop()
@@ -35,30 +35,63 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        //    float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
-        //    //Vector3 spawnPosition = new Vector3(x, spawnY, 0.0f);
+        //敵の合計をチェック
+        int totalActive =
+            enemyObjectPool1.ActionCount +
+            enemyObjectPool2.ActionCount +
+            enemyObjectPool3.ActionCount;
 
+        if (totalActive + 1 > maxEnemyCount) return;
 
-        //    /// ObjectPool から Enemy を取得
-        //Enemy enemy = EnemyObjectPool1.Instance.GetPoolEnemy();
-        //    enemy.transform.position = spawnPosition;
-        //    enemy.transform.rotation = Quaternion.identity;
+        float currentScore = GameManager.Instance.score;
+        int rand = Random.Range(0, 100);
 
-        float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
+        Enemy enemy = null;
 
-        Enemy enemy1 = enemyObjectPool1.GetPoolEnemy();
-        enemy1.transform.position = new Vector3(x, spawnY, 0f);
-        enemy1.transform.rotation = Quaternion.identity;
+        //スコアによる敵の排出率制御
+        if (currentScore < 20)
+        {
+            enemy = enemyObjectPool1.GetPoolEnemy();
+        }
+        else if (currentScore < 50)
+        {
+            if (rand < 70)
+            {
+                enemy = enemyObjectPool1.GetPoolEnemy();
+            }
+            else
+            {
+                enemy = enemyObjectPool2.GetPoolEnemy();
+            }
+        }
+        else if (currentScore < 100)
+        {
+            if (rand < 50)
+            {
+                enemy = enemyObjectPool1.GetPoolEnemy();
+            }
+            else
+            {
+                enemy = enemyObjectPool2.GetPoolEnemy();
+            }
+        }
+        else
+        {
+            if (rand < 60)
+            {
+                enemy = enemyObjectPool2.GetPoolEnemy();
+            }
+            else
+            {
+                enemy = enemyObjectPool3.GetPoolEnemy();
+            }
+        }
 
-
-        Enemy enemy2 = enemyObjectPool2.GetPoolEnemy();
-        enemy2.transform.position = new Vector3(x, spawnY, 0f);
-        enemy2.transform.rotation = Quaternion.identity;
-
-        Enemy enemy3 = enemyObjectPool3.GetPoolEnemy();
-        enemy3.transform.position = new Vector3(x, spawnY, 0f);
-        enemy3.transform.rotation = Quaternion.identity;
-
+        if (enemy != null)
+        {
+            float x = Random.Range(spawnRangeX.x, spawnRangeX.y);
+            enemy.transform.position = new Vector3(x, spawnY, 0f);
+            enemy.transform.rotation = Quaternion.identity;
+        }
     }
-
 }
