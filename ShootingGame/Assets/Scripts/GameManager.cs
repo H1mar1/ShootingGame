@@ -112,8 +112,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ResuleScene()
+    private async void ResuleScene()
     {
+        await UniTask.Delay(3000);//3•b‘Ò‚Â
         SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
     }
 
