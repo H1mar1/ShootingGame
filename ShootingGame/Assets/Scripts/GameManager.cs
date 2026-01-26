@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -106,8 +107,14 @@ public class GameManager : MonoBehaviour
                 halfHP3.SetActive(false);
                 nullHP3.SetActive(true);
                 Debug.Log("HPが0になりました！ゲームオーバー");
+                ResuleScene();
                 break;
         }
+    }
+
+    private void ResuleScene()
+    {
+        SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
     }
 
 }
