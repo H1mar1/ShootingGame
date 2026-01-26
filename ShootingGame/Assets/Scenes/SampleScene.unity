@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &124923362
 Transform:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &957756017
 Transform:
   m_ObjectHideFlags: 0
@@ -1118,6 +1118,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerObj: {fileID: 2038890165}
   scoreText: {fileID: 177415859}
+  maxHP1: {fileID: 124923361}
+  maxHP2: {fileID: 1752874057}
+  maxHP3: {fileID: 957756016}
+  halfHP1: {fileID: 1973864569}
+  halfHP2: {fileID: 1483313270}
+  halfHP3: {fileID: 1846167267}
+  nullHP1: {fileID: 1235722992}
+  nullHP2: {fileID: 558836107}
+  nullHP3: {fileID: 1974242925}
   score: 0
 --- !u!4 &1403337756
 Transform:
@@ -1343,7 +1352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1752874058
 Transform:
   m_ObjectHideFlags: 0
