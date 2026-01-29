@@ -53,23 +53,25 @@ public class Enemy : MonoBehaviour
     {
         if (isReleased) return;
 
-        //弾に当たった時の処理
+        // 弾に当たった時
         if (other.CompareTag("PlayerBullet"))
         {
-
-            TakeDamage(1);//1発分のダメージ
-           
+            TakeDamage(1);
         }
 
-        //プレイヤーに当たった時の処理
+        // プレイヤーに当たった時
         if (other.CompareTag("Player"))
         {
             Debug.Log("プレイヤーに当たりました");
-            GameManager.Instance.OnPlayerHitEnemy().Forget();
+
+            // プレイヤー側のHP処理は待機ありで呼ぶ
+            GameManager.Instance.OnPlayerHitEnemy();
+
+            // 敵は即座にオブジェクトプールに返却
             Release();
         }
-
     }
+
 
     private void Release()
     {

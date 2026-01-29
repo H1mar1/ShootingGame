@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private GameObject playerObj;
     [SerializeField, Header("得点を表示するテキストの設定")]
     private TextMeshProUGUI scoreText;
+    [SerializeField, Header("結果画面で得点を表示するテキストの設定")]
+    private TextMeshProUGUI endScoreText;
     [SerializeField, Header("MaxHP1")]
     private GameObject maxHP1;
     [SerializeField, Header("MaxHP2")]
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    private bool isProcessingHit = false;
+
     public float score = 0;//最初のスコア設定
     private int hpCounts = 0;//最初のHP設定
 
@@ -49,7 +53,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     //敵を倒したとき
@@ -63,15 +76,20 @@ public class GameManager : MonoBehaviour
 
     public async UniTask OnPlayerHitEnemy()
     {
+        if (isProcessingHit) return; 
+        isProcessingHit = true;
+
         Debug.Log("プレイヤーに敵が当たりました");
+        Debug.Log("hpCounts" + hpCounts);
 
         await UniTask.Delay(500);
 
         hpCounts++;
         hPCounter();
 
-       
-       // Debug.Log("ゲームオーバー");
+        isProcessingHit = false;
+
+        // Debug.Log("ゲームオーバー");
     }
 
     private void hPCounter()
@@ -117,5 +135,4 @@ public class GameManager : MonoBehaviour
         await UniTask.Delay(3000);//3秒待つ
         SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
     }
-
 }
