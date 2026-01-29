@@ -53,24 +53,27 @@ public class Enemy : MonoBehaviour
     {
         if (isReleased) return;
 
-        // 弾に当たった時
         if (other.CompareTag("PlayerBullet"))
         {
             TakeDamage(1);
         }
 
-        // プレイヤーに当たった時
         if (other.CompareTag("Player"))
         {
             Debug.Log("プレイヤーに当たりました");
 
-            // プレイヤー側のHP処理は待機ありで呼ぶ
-            GameManager.Instance.OnPlayerHitEnemy();
+            // HP処理は即座に呼び出し
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.OnPlayerHitEnemy();
+            }
 
-            // 敵は即座にオブジェクトプールに返却
+            // Release は最後
             Release();
         }
     }
+
+
 
 
     private void Release()
@@ -98,14 +101,21 @@ public class Enemy : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            Debug.Log("弾が当たりました！");
-            GameManager.Instance.AddScore(enemyDataBase.enemyPoint);
+            // 1. スコアを先に加算
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.AddScore(enemyDataBase.enemyPoint);
+                Debug.Log("スコア加算済み: " + enemyDataBase.enemyPoint);
+            }
+
+            // 2. Release は必ず最後
             Release();
         }
         else
         {
             Debug.Log("敵はまだ生きています！残りHP：" + currentHP);
         }
-
     }
+
+
 }

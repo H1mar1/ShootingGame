@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     private GameObject playerObj;
     [SerializeField, Header("得点を表示するテキストの設定")]
     private TextMeshProUGUI scoreText;
-    [SerializeField, Header("結果画面で得点を表示するテキストの設定")]
-    private TextMeshProUGUI endScoreText;
     [SerializeField, Header("MaxHP1")]
     private GameObject maxHP1;
     [SerializeField, Header("MaxHP2")]
@@ -62,6 +60,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -69,9 +68,22 @@ public class GameManager : MonoBehaviour
     public void AddScore(float point)
     {
         score += point;
-        Debug.Log("スコア:" + score);
+        Debug.Log($"スコア加算: +{point} / 合計: {score}");
 
-        scoreText.text = "Score:" + score.ToString();
+        //scoreText.text = "Score:" + score.ToString();
+        UpdateScoreText();
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score:" + score.ToString();
+        }
+        else
+        {
+            Debug.LogError("GameManager: scoreTextがインスペクターで設定されていません！");
+        }
     }
 
     public async UniTask OnPlayerHitEnemy()
@@ -132,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     private async void ResuleScene()
     {
-        await UniTask.Delay(3000);//3秒待つ
+        await UniTask.Delay(500);//0.5秒待つ
         SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
     }
 }
