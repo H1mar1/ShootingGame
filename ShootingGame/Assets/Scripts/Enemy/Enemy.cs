@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField, Header("敵のデータベース参照")]
     private EnemyDataBase enemyDataBase;
 
-    // Poolに戻す処理
+      // Poolに戻す処理
     private Action _releaseAction;
 
     private bool isReleased = false;
@@ -52,12 +53,22 @@ public class Enemy : MonoBehaviour
     {
         if (isReleased) return;
 
+        //弾に当たった時の処理
         if (other.CompareTag("PlayerBullet"))
         {
 
             TakeDamage(1);//1発分のダメージ
            
         }
+
+        //プレイヤーに当たった時の処理
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("プレイヤーに当たりました");
+            GameManager.Instance.OnPlayerHitEnemy().Forget();
+            Release();
+        }
+
     }
 
     private void Release()
