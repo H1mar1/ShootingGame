@@ -45,66 +45,66 @@ public class EnemySpawn : MonoBehaviour
         int rand = Random.Range(0, 100);
         Enemy enemy = null;
 
-        //スコアによる敵の排出率制御
-        if (currentScore < 20)
-        {
-            if (rand < 100)
-            {
-                enemy = enemyObjectPool1.GetPoolEnemy();
-            }
-        }
-        else if (currentScore < 50)
-        {
-            if (rand < 70)
-            {
-                enemy = enemyObjectPool1.GetPoolEnemy();
-            }
-            else
-            {
-                enemy = enemyObjectPool2.GetPoolEnemy();
-            }
-        }
-        else if (currentScore < 100)
-        {
-            if (rand < 50)
-            {
-                enemy = enemyObjectPool1.GetPoolEnemy();
-            }
-            else
-            {
-                enemy = enemyObjectPool2.GetPoolEnemy();
-            }
-        }
-        else if (currentScore < 120)
-        {
-            if (rand < 40)
-            {
-                enemy = enemyObjectPool1.GetPoolEnemy();
-            }
-            else if (rand < 80)
-            {
-                enemy = enemyObjectPool2.GetPoolEnemy();
-            }
-            else
-            {
-                enemy = enemyObjectPool3.GetPoolEnemy();
-            }
-        }
-        else
-        {
-            if (rand < 20)
-            {
-                enemy = enemyObjectPool1.GetPoolEnemy();
-            }
-            else if (rand < 60)
-            {
-                enemy = enemyObjectPool2.GetPoolEnemy();
-            }
-            else
-            {
-                enemy = enemyObjectPool3.GetPoolEnemy();
-            }
-        }
+        ////スコアによる敵の排出率制御
+        //if (currentScore < 20)
+        //{
+        //    if (rand < 100)
+        //    {
+        //        enemy = enemyObjectPool1.GetPoolEnemy();
+        //    }
+        //}
+        //else if (currentScore < 50)
+        //{
+        //    if (rand < 70)
+        //    {
+        //        enemy = enemyObjectPool1.GetPoolEnemy();
+        //    }
+        //    else
+        //    {
+        //        enemy = enemyObjectPool2.GetPoolEnemy();
+        //    }
+        //}
+        //else if (currentScore < 100)
+        //{
+        //    if (rand < 50)
+        //    {
+        //        enemy = enemyObjectPool1.GetPoolEnemy();
+        //    }
+        //    else
+        //    {
+        //        enemy = enemyObjectPool2.GetPoolEnemy();
+        //    }
+        //}
+        //else if (currentScore < 120)
+        //{
+        //    if (rand < 40)
+        //    {
+        //        enemy = enemyObjectPool1.GetPoolEnemy();
+        //    }
+        //    else if (rand < 80)
+        //    {
+        //        enemy = enemyObjectPool2.GetPoolEnemy();
+        //    }
+        //    else
+        //    {
+        //        enemy = enemyObjectPool3.GetPoolEnemy();
+        //    }
+        //}
+        //else
+        //{
+        //    if (rand < 20)
+        //    {
+        //        enemy = enemyObjectPool1.GetPoolEnemy();
+        //    }
+        //    else if (rand < 60)
+        //    {
+        //        enemy = enemyObjectPool2.GetPoolEnemy();
+        //    }
+        //    else
+        //    {
+        //        enemy = enemyObjectPool3.GetPoolEnemy();
+        //    }
+        //}
 
         if (enemy != null)
         {
